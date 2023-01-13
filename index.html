@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weight and Length Converter</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="converter">
+      <h1 style="user-select: none">Weight and Length Converter</h1>
+      <form>
+        <label>Weight :</label>
+        <input type="text" id="weightInput" />
+        <select id="weightUnit">
+          <option value="kg">Kilograms</option>
+          <option value="lb">Pounds</option>
+        </select>
+
+        <label>Length :</label>
+        <input type="text" id="lengthInput" />
+        <select id="lengthUnit">
+          <option value="cm">Centimeters</option>
+          <option value="in">Inches</option>
+        </select>
+        <button type="button" id="convertButton">Convert</button>
+        <button type="button" id="reloadButton">Refresh the Page</button>
+      </form>
+      <div id="result">
+        <p>
+          <span id="weightResult"></span>
+          <span id="weightUnit"></span>
+        </p>
+        <p>
+          <span id="lengthResult"></span>
+          <span id="lengthUnit"></span>
+        </p>
+      </div>
+    </div>
+
+    <script>
+      "use strict";
+
+      const weightInput = document.getElementById("weightInput");
+      const weightUnit = document.getElementById("weightUnit");
+      const lengthInput = document.getElementById("lengthInput");
+      const lengthUnit = document.getElementById("lengthUnit");
+      const convertButton = document.getElementById("convertButton");
+      const weightResult = document.getElementById("weightResult");
+      const weightUnitSpan = document.getElementById("weightUnit");
+      const lengthResult = document.getElementById("lengthResult");
+      const lengthUnitSpan = document.getElementById("lengthUnit");
+      const reloadButton = document.getElementById("reloadButton");
+
+      reloadButton.onclick = function () {
+        location.reload();
+      };
+      convertButton.addEventListener("click", () => {
+        const weightValue = parseFloat(weightInput.value);
+        const lengthValue = parseFloat(lengthInput.value);
+        if (weightUnit.value == "kg") {
+          weightResult.innerText = (weightValue * 2.20462).toFixed(2);
+          weightUnitSpan.innerText = "lb";
+        } else {
+          weightResult.innerText = (weightValue / 2.20462).toFixed(2);
+          weightUnitSpan.innerText = "kg";
+        }
+
+        if (lengthUnit.value == "cm") {
+          lengthResult.innerText = (weightValue * 0.393701).toFixed(2);
+          lengthUnitSpan.innerText = "in";
+        } else {
+          lengthResult.innerText = (weightValue / 0.393701).toFixed(2);
+          lenghtUnitSpan.innerText = "cm";
+        }
+      });
+    </script>
+  </body>
+</html>
